@@ -1,34 +1,24 @@
 package com.tma.documents;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
+@Data
 public class Band {
 
+    @JsonProperty("id")
     @Id
     public String id;
-    private String bandName;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("formationDate")
     private Date formationDate;
 
-    public Band() {};
-    public Band(String bandName) {
-        setBandName(bandName);
+    public Band (String name) {
+        this.name = name;
     }
 
-    public String getBandName() {
-        return bandName;
-    }
-
-    public void setBandName(String bandName) {
-        this.bandName = bandName;
-    }
-
-    public Date getFormationDate() {
-        return formationDate;
-    }
-
-    public void setFormationDate(Date formationDate) {
-        this.formationDate = formationDate;
-    }
 }

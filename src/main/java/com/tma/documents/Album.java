@@ -1,71 +1,33 @@
 package com.tma.documents;
 
-import org.springframework.context.annotation.Bean;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "Albums")
+@Data
 public class Album {
 
+    @JsonProperty("id")
     @Id
     public String id;
-
+    @JsonProperty("title")
     public String title;
+    @JsonProperty("band")
     public Band band;
+    @JsonProperty("releaseDate")
     public Date releaseDate;
+    @JsonProperty("label")
+    public String label;
+    @JsonProperty("link")
+    public String link;
+    @JsonProperty("albumCover")
+    public String albumCover;
+    @JsonProperty("genre")
+    public List<Genre> genre;
 
-    @Bean
-    public Album album() {
-        return new Album();
-    }
-    /** Default Constructor */
-    public Album(){}
-
-    /** Constructor */
-    public Album(String title, Band band, Date releaseDate){
-        setTitle(title);
-        setBand(band);
-        setReleaseDate(releaseDate);
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Album[id=%s, title='%s', band='%s']",
-                id, title, band.getBandName());
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Band getBand() {
-        return band;
-    }
-
-    public void setBand(Band band) {
-        this.band = band;
-    }
-
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
 }
